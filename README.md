@@ -213,21 +213,21 @@ netsh advfirewall set allprofiles logging droppedconnections enable
 ## 📁 Estructura del Proyecto
 
 ```
-├── README.md
-├── docs/
-│   └── Lab_Ciberseguridad_Documentacion_Final.html
-├── configs/
-│   ├── RT-EDGE.txt
-│   ├── RT-HQ.txt
-│   ├── RT-BRANCH.txt
-│   ├── SW-CORE-HQ.txt
-│   ├── SW-DMZ.txt
-│   └── SW-BRANCH.txt
-├── scans/
-│   ├── metasploitable_scan.txt
-│   └── windows11_scan.txt
-└── captures/
-    └── nmap_scan.pcapng
+evidencias/
+├── red-team/
+│   ├── ataque-01-backdoor-1524/
+│   ├── ataque-02-samba-rce/
+│   ├── ataque-03-tomcat-privesc/
+│   └── ataque-04-windows-recon/
+├── blue-team/
+│   ├── defensa-01-acl-bloqueo/
+│   ├── defensa-02-port-security/
+│   ├── defensa-03-span-mirror/
+│   ├── defensa-04-syslog/
+│   └── defensa-05-windows-firewall/
+└── captura-de-trafico/
+    ├── snort/
+    └── wireshark/
 ```
 
 ## 🛠️ Requisitos
