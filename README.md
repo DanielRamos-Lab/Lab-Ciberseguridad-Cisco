@@ -145,7 +145,7 @@ nmap -sV -p 135,139,445,3389,5985 172.16.30.100
 
 ## 🛡️ Ejercicios Blue Team
 
-### 1. ACL - Bloqueo de Puertos
+1. ACL - Bloqueo de Puertos
 ```cisco
 ip access-list extended PROTECT_DMZ
  permit tcp 172.16.40.0 0.0.0.255 any eq 22
@@ -153,13 +153,13 @@ ip access-list extended PROTECT_DMZ
  deny tcp any host 172.16.10.50 eq 1524 log
  deny tcp any host 172.16.10.50 eq 445 log
  deny tcp any host 172.16.10.50 eq 139 log
+ deny tcp any host 172.16.10.50 eq 6667 log
  permit ip any any
 
 interface GigabitEthernet0/1
  ip access-group PROTECT_DMZ in
 ```
-
-### 2. Port Security
+2. Port Security
 ```cisco
 interface range FastEthernet0/2-24
  switchport port-security
@@ -167,48 +167,58 @@ interface range FastEthernet0/2-24
  switchport port-security violation restrict
  switchport port-security mac-address sticky
 ```
-
-### 3. SPAN/Port Mirror
+3. SPAN/Port Mirror
 ```cisco
 monitor session 1 source vlan 40
 monitor session 1 destination interface GigabitEthernet1/0/20
 ```
-
-### 4. Logging Centralizado
+4. Logging Centralizado (Syslog)
 ```cisco
 logging host 172.16.40.50
 logging trap informational
 ```
+5. Windows Firewall
+```powershell
+# Habilitar auditoría
+auditpol /set /subcategory:"Filtering Platform Packet Drop" /success:enable /failure:enable
+auditpol /set /subcategory:"Filtering Platform Connection" /success:enable /failure:enable
 
-### 5. Snort IDS
+# Habilitar logging
+netsh advfirewall set allprofiles logging droppedconnections enable
+netsh advfirewall set allprofiles logging allowedconnections enable
+
+# Ver logs
+Get-Content C:\Windows\System32\LogFiles\Firewall\pfirewall.log -Tail 30
+```
+📡 Captura de Tráfico
+Snort IDS
 ```bash
 sudo snort -i eth0
-# Monitoreo de tráfico en tiempo real
+
+# Estadísticas capturadas:
+# - Paquetes analizados: 119
+# - ICMP: 60 (50.4%)
+# - TCP: 10 (8.4%)
+# - UDP: 11 (9.2%)
 ```
-
-### 6. Wireshark
+Wireshark
 ```
-Filtro: ip.addr == 172.16.10.50
-# Análisis de paquetes durante ataques
+Filtro aplicado: ip.addr == 172.16.10.50
+
+Interpretación de colores:
+- 🟢 Verde: Puerto abierto (SYN-ACK)
+- 🔴 Rojo: Puerto cerrado (RST)
+- 🟡 Amarillo: Bloqueado por ACL (ICMP Destination unreachable)
 ```
-
-### 7. Windows Firewall
-```powershell
-# Auditoría
-auditpol /set /subcategory:"Filtering Platform Packet Drop" /success:enable /failure:enable
-
-# Logging
-netsh advfirewall set allprofiles logging droppedconnections enable
-```
-
-## 📊 Resultados
-
-| Categoría | Cantidad | Estado |
-|-----------|----------|--------|
-| Equipos Cisco | 6 | ✅ Configurados |
-| Ataques Red Team | 4 | ✅ Exitosos |
-| Defensas Blue Team | 7 | ✅ Implementadas |
-| VMs | 3 | ✅ Operativas |
+---
+📊 Resultados
+Categoría	Cantidad	Estado
+Equipos Cisco	6	✅ Configurados
+Ataques Red Team	4	✅ Exitosos
+Defensas Blue Team	5	✅ Implementadas
+Herramientas de Captura	2	✅ Configuradas
+VMs	3	✅ Operativas
+---
 
 ## 📁 Estructura del Proyecto
 
@@ -263,8 +273,8 @@ evidencias/
 ## 👤 Autor
 
 **Ramos**
-- Maestría en Ciberseguridad - UNITEC
-- CompTIA Security+ | CCNA | ISC2 CC | DFE
+- Maestría en Ciberseguridad 
+- CompTIA Security+ | CCNA | ISC2 CC | EC-Council DFE | Google CyberSecurity 
 
 ## 📄 Licencia
 
