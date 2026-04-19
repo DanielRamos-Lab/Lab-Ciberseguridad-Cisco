@@ -1,0 +1,366 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2026.01.09 21:31:29 =~=~=~=~=~=~=~=~=~=~=~=
+
+% Bad IP address or host name
+% Unknown command or computer name, or unable to find computer address
+Router>
+Router>
+Router>en
+Router#hots  
+Router#hots  st
+Router#host    coinf t       conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#host RT-HQ
+RT-HQ(config)#no ip
+RT-HQ(config)#no ip dom
+RT-HQ(config)#no ip domain
+% Incomplete command.
+
+RT-HQ(config)#no ip domain-lo
+RT-HQ(config)#no ip domain-lookup 
+RT-HQ(config)#banner mot
+RT-HQ(config)#banner motd # RT-HQ - SEDE PRINCIPAL - ACCESO RESTRINGIDO #
+RT-HQ(config)#ena
+RT-HQ(config)#enable sec
+RT-HQ(config)#enable secret Cisco123!
+RT-HQ(config)#service
+RT-HQ(config)#service pas
+RT-HQ(config)#service password-encryption 
+RT-HQ(config)#securi
+RT-HQ(config)#security pas
+RT-HQ(config)#security passwords min-len
+RT-HQ(config)#security passwords min-length 9 8
+RT-HQ(config)#username admin privilage 15
+RT-HQ(config)#username admin privilage 15 sec
+RT-HQ(config)#username admin privilage 15 secage 15 sec ege 15 secg
+RT-HQ(config)#username admin privilege 15 secret AdminSecure123!
+RT-HQ(config)#ip domain  -na
+RT-HQ(config)#ip domain-name techcorp.local
+RT-HQ(config)#crypto
+RT-HQ(config)#crypto key
+RT-HQ(config)#crypto key gene
+RT-HQ(config)#crypto key generate rsa
+RT-HQ(config)#crypto key generate rsa mod
+RT-HQ(config)#crypto key generate rsa modulus 2048
+The name for the keys will be: RT-HQ.techcorp.local
+
+% The key modulus size is 2048 bits
+% Generating 2048 bit RSA keys, keys will be non-exportable...
+[OK] (elapsed time was 17 seconds)
+
+RT-HQ(config)#
+RT-HQ(config)#
+*Jan 10 01:43:27.767: %SSH-5-ENABLED: SSH 1.99 has been enabledip 
+% Incomplete command.
+
+RT-HQ(config)#
+RT-HQ(config)#
+RT-HQ(config)#
+RT-HQ(config)#ip a ss
+RT-HQ(config)#ip ssh version 2
+RT-HQ(config)#ip ssh i time
+RT-HQ(config)#ip ssh time-out 60
+RT-HQ(config)# ip ssh
+RT-HQ(config)# ip ssh aut
+RT-HQ(config)# ip ssh authentication-retries 3
+RT-HQ(config)#li  ne
+RT-HQ(config)#line cons
+RT-HQ(config)#line console 0
+RT-HQ(config-line)#login
+RT-HQ(config-line)#login lo
+RT-HQ(config-line)#login local 
+RT-HQ(config-line)#logg
+RT-HQ(config-line)#logging syb n
+RT-HQ(config-line)#logging synchronous 
+RT-HQ(config-line)#exc ec-
+RT-HQ(config-line)#exec- -timew
+RT-HQ(config-line)#exec-timew 
+RT-HQ(config-line)#exec-timeout 10 0
+RT-HQ(config-line)#exit
+RT-HQ(config)#line vty 0 4
+RT-HQ(config-line)#login local 
+RT-HQ(config-line)#tras ns
+RT-HQ(config-line)#transport input ssh
+RT-HQ(config-line)#exec-time
+RT-HQ(config-line)#exec-timeout 10 0
+RT-HQ(config-line)#exit
+RT-HQ(config)#
+RT-HQ(config)#
+RT-HQ(config)#inter giga 0/0
+RT-HQ(config-if)#des
+RT-HQ(config-if)#description LINK a RT-EDGE
+RT-HQ(config-if)#ip ad
+RT-HQ(config-if)#ip address 10.0.0.2 255.255.255.252
+RT-HQ(config-if)#no shut
+RT-HQ(config-if)#no shutdown 
+RT-HQ(config-if)#exit
+RT-HQ(config)#int
+*Jan 10 01:45:30.983: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to down
+RT-HQ(config)#inter gig
+*Jan 10 01:45:34.779: %LINK-3-UPDOWN: Interface GigabitEthernet0/0, changed state to up
+*Jan 10 01:45:35.779: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0, changed state to up
+RT-HQ(config)#inter gig0/1
+RT-HQ(config-if)#des
+RT-HQ(config-if)#description TRUNK a A SW  -CORE-HQ
+RT-HQ(config-if)#no ip
+RT-HQ(config-if)#no ip ad
+RT-HQ(config-if)#no ip address 
+RT-HQ(config-if)#no shu
+RT-HQ(config-if)#no shutdown 
+RT-HQ(config-if)#exit
+RT-HQ(config)#inter
+RT-HQ(config)#interface 
+*Jan 10 01:46:05.019: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to down
+RT-HQ(config)#interface 
+*Jan 10 01:46:07.787: %LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up
+*Jan 10 01:46:08.787: %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/1, changed state to up
+RT-HQ(config)#interface giga
+RT-HQ(config)#interface gigabitEthernet 0/1.26 0
+RT-HQ(config-subif)#des
+RT-HQ(config-subif)#description VL  VLAN 20 - SERVIDORES
+RT-HQ(config-subif)#enca
+RT-HQ(config-subif)#encapsulation do
+RT-HQ(config-subif)#encapsulation dot1Q 20
+RT-HQ(config-subif)#ip ad
+RT-HQ(config-subif)#ip address 182  71 2.16.20.1 255.255.255.0
+RT-HQ(config-subif)#exit
+RT-HQ(config)#
+RT-HQ(config)#
+RT-HQ(config)#iter
+RT-HQ(config)#iter   nter
+RT-HQ(config)#interface giga 0/1.30
+RT-HQ(config-subif)#des
+RT-HQ(config-subif)#description VLAN 30 - USUARIOS
+RT-HQ(config-subif)#enca
+RT-HQ(config-subif)#encapsulation do
+RT-HQ(config-subif)#encapsulation dot1Q 30
+RT-HQ(config-subif)#ip ad
+RT-HQ(config-subif)#ip address 18 72.16.30.1 255.255.255.0
+RT-HQ(config-subif)#exit
+RT-HQ(config)#
+RT-HQ(config)#
+RT-HQ(config)#inter giga 1 0/1.40 
+RT-HQ(config-subif)#des
+RT-HQ(config-subif)#description VLAN 40 - IT/ADMIN
+RT-HQ(config-subif)#en
+RT-HQ(config-subif)#encapsulation do
+RT-HQ(config-subif)#encapsulation dot1Q 40
+RT-HQ(config-subif)#ip ad
+RT-HQ(config-subif)#ip address 172.16.40.1 255.255.255.0
+RT-HQ(config-subif)#exit
+RT-HQ(config)#
+RT-HQ(config)#
+RT-HQ(config)#inter
+RT-HQ(config)#interface fas
+RT-HQ(config)#interface fastEthernet 0/0/0
+RT-HQ(config-if)#des
+RT-HQ(config-if)#description WAN a   A RT-BRNAC   ACNH   NCH
+RT-HQ(config-if)#ip ad
+RT-HQ(config-if)#ip address 10.0.0.5 255.255.255.252
+RT-HQ(config-if)#no shu
+RT-HQ(config-if)#exit
+RT-HQ(config)#
+RT-HQ(config)#
+RT-HQ(config)#
+*Jan 10 01:49:24.247: %LINK-3-UPDOWN: Interface FastEthernet0/0/0, changed state to up
+*Jan 10 01:49:25.247: %LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0/0, changed state to up
+RT-HQ(config)#ip route 0.0.0.0 0.0.0.0 0.0.0.0 1
+%Invalid next hop address
+RT-HQ(config)#ip route 0.0.0.0 0.0.0.0 0.0.0.10.0.0.1 1.0.0.10.0.0.1
+RT-HQ(config)#ip route 0.0.0.0 0.0.0.0 10.0.0.1 0.0.0.0 10.0.0.1  0.0.0.0 10.0.0.1  0.0.0.0 10.0.0.1  0.0.0.0 10.0.0.1  0.0.0.0 10.0.0.1  0.0.0.0 10.0.0.1  0.0.0.0 10.0.0.1 1 0.0.0.0 10.0.0.19 0.0.0.0 10.0.0.12 0.0.0.0 10.0.0.1. 0.0.0.0 10.0.0.11 0.0.0.0 10.0.0.16 0.0.0.0 10.0.0.18 0.0.0.0 10.0.0.1. 0.0.0.0 10.0.0.15 0.0.0.0 10.0.0.10 0.0.0.0 10.0.0.1. 0.0.0.0 10.0.0.10 0.0.0.0 10.0.0.1 0.0.0.0  10.0.0.1  10.0.0.1  10.0.0.1  10.0.0.1  10.0.0.1  10.0.0.1  10.0.0.1 10.0.0.1   10.0.0.12 10.0.0.15 10.0.0.15 10.0.0.1. 10.0.0.12 10.0.0.15 10.0.0.15 10.0.0.1. 10.0.0.12 10.0.0.15 10.0.0.15 10.0.0.1. 10.0.0.10 10.0.0.1  10.0.0.1 10.0.0.1 6
+RT-HQ(config)#end
+RT-HQ#
+RT-HQ#
+RT-HQ#wr
+Building configuration...
+
+*Jan 10 01:50:24.959: %SYS-5-CONFIG_I: Configured from console by console[OK]
+RT-HQ#
+RT-HQ#
+RT-HQ#
+RT-HQ#
+RT-HQ#
+RT-HQ#sh run
+RT-HQ#sh running-config 
+Building configuration...
+
+Current configuration : 2042 bytes
+!
+! Last configuration change at 01:50:24 UTC Sat Jan 10 2026
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname RT-HQ
+!
+boot-start-marker
+boot-end-marker
+!
+!
+security passwords min-length 8
+enable secret 5 $1$4AP1$POH11TzpGwOGkdx3wE5M30
+!
+no aaa new-model
+!
+ip cef
+!
+!
+ --More--         !
+ --More--         !
+ --More--         
+ --More--         
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         no ip domain lookup
+ --More--         ip domain name techcorp.local
+ --More--         no ipv6 cef
+ --More--         multilink bundle-name authenticated
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         license udi pid CISCO1921/K9 sn FTX182686H7
+ --More--         !
+ --More--         !
+ --More--         username admin privilege 15 secret 5 $1$BP.L$Zt3i/HfFKuGo/Q8D4kBCT/
+ --More--         !
+ --More--         redundancy
+ --More--         !
+ --More--         !
+ --More--         ip ssh time-out 60
+ --More--         ip ssh version 2
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         interface Embedded-Service-Engine0/0
+ --More--          no ip address
+ --More--          shutdown
+ --More--         !
+ --More--         interface GigabitEthernet0/0
+ --More--          description LINK a RT-EDGE
+ --More--          ip address 10.0.0.2 255.255.255.252
+ --More--          duplex auto
+ --More--          speed auto
+ --More--         !
+ --More--         interface GigabitEthernet0/1
+ --More--          description TRUNK A SW-CORE-HQ
+ --More--          no ip address
+ --More--          duplex auto
+ --More--          speed auto
+ --More--         !
+ --More--         interface GigabitEthernet0/1.20
+ --More--          description VLAN 20 - SERVIDORES
+ --More--          encapsulation dot1Q 20
+ --More--          ip address 172.16.20.1 255.255.255.0
+ --More--         !
+ --More--         interface GigabitEthernet0/1.30
+ --More--          description VLAN 30 - USUARIOS
+ --More--          encapsulation dot1Q 30
+ --More--          ip address 172.16.30.1 255.255.255.0
+ --More--         !
+ --More--         interface GigabitEthernet0/1.40
+ --More--          description VLAN 40 - IT/ADMIN
+ --More--          encapsulation dot1Q 40
+ --More--          ip address 172.16.40.1 255.255.255.0
+ --More--         !
+ --More--         interface FastEthernet0/0/0
+ --More--          description WAN A RT-BRANCH
+ --More--          ip address 10.0.0.5 255.255.255.252
+ --More--          duplex auto
+ --More--          speed auto
+ --More--         !
+ --More--         interface FastEthernet0/0/1
+ --More--          no ip address
+ --More--          shutdown
+ --More--          duplex auto
+ --More--          speed auto
+ --More--         !
+ --More--         ip forward-protocol nd
+ --More--         !
+ --More--         no ip http server
+ --More--         no ip http secure-server
+ --More--         !
+ --More--         ip route 0.0.0.0 0.0.0.0 10.0.0.1
+ --More--         ip route 192.168.50.0 255.255.255.0 10.0.0.6
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         control-plane
+ --More--         !
+ --More--         
+RT-HQ#sh ip int brief
+Interface                  IP-Address      OK? Method Status                Protocol
+Embedded-Service-Engine0/0 unassigned      YES NVRAM  administratively down down    
+GigabitEthernet0/0         10.0.0.2        YES manual up                    up      
+GigabitEthernet0/1         unassigned      YES NVRAM  up                    up      
+GigabitEthernet0/1.20      172.16.20.1     YES manual up                    up      
+GigabitEthernet0/1.30      172.16.30.1     YES manual up                    up      
+GigabitEthernet0/1.40      172.16.40.1     YES manual up                    up      
+FastEthernet0/0/0          10.0.0.5        YES manual up                    up      
+FastEthernet0/0/1          unassigned      YES NVRAM  administratively down down    
+RT-HQ#sh vlan  s
+
+Virtual LAN ID:  1 (IEEE 802.1Q Encapsulation)
+
+   vLAN Trunk Interface:   GigabitEthernet0/1
+
+ This is configured as native Vlan for the following interface(s) :
+GigabitEthernet0/1    Native-vlan Tx-type: Untagged
+
+   Protocols Configured:   Address:              Received:        Transmitted:
+        Other                                           0                  33
+
+   14 packets, 2750 bytes input
+   33 packets, 2499 bytes output
+
+Virtual LAN ID:  20 (IEEE 802.1Q Encapsulation)
+
+   vLAN Trunk Interface:   GigabitEthernet0/1.20
+
+   Protocols Configured:   Address:              Received:        Transmitted:
+           IP              172.16.20.1                  0                   0
+        Other                                           0                   2
+
+   0 packets, 0 bytes input
+ --More--            2 packets, 92 bytes output
+ --More--         
+ --More--         Virtual LAN ID:  30 (IEEE 802.1Q Encapsulation)
+ --More--         
+ --More--            vLAN Trunk Interface:   GigabitEthernet0/1.30
+ --More--         
+ --More--            Protocols Configured:   Address:              Received:        Transmitted:
+ --More--                    IP              172.16.30.1                  0                   0
+ --More--                 Other                                           0                   2
+ --More--         
+ --More--            0 packets, 0 bytes input
+ --More--            2 packets, 92 bytes output
+ --More--         
+ --More--         Virtual LAN ID:  40 (IEEE 802.1Q Encapsulation)
+ --More--         
+ --More--            vLAN Trunk Interface:   GigabitEthernet0/1.40
+ --More--         
+ --More--            Protocols Configured:   Address:              Received:        Transmitted:
+ --More--                    IP              172.16.40.1                  0                   0
+ --More--                 Other                                           0                   2
+ --More--         
+ --More--            0 packets, 0 bytes input
+ --More--            2 packets, 92 bytes output
+ --More--         
+RT-HQ#
+RT-HQ#
+RT-HQ#
+RT-HQ#
+RT-HQ#
+RT-HQ#
+RT-HQ#
+RT-HQ#
+RT-HQ#sh vlan brief
+% Ambiguous command:  "sh vlan brief"
+RT-HQ#sh vlan  s brief
+               ^
+% Invalid input detected at '^' marker.
+
+RT-HQ#

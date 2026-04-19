@@ -1,0 +1,313 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2026.01.10 21:11:41 =~=~=~=~=~=~=~=~=~=~=~=
+
+Switch>en
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#host SW-BRAC NCH
+SW-BRANCH(config)#no   o ip doma
+SW-BRANCH(config)#no ip domain-lo
+SW-BRANCH(config)#no ip domain-lookup 
+SW-BRANCH(config)#banner motd # SW-BRANCH
+Apr 13 11:00:38.709: %PNP-6-PNP_DISCOVERY_STOPPED: PnP Discovery stopped (Aborted by non-PnP bootstrapping)                          
+SW-BRANCH(config)#banner motd # SW-BRANCH - SUCURSAL - ACCESO RESTRINGIDO #
+SW-BRANCH(config)#
+SW-BRANCH(config)#
+SW-BRANCH(config)#enable sece re
+SW-BRANCH(config)#enable secret Cisco123!
+SW-BRANCH(config)#service pas
+SW-BRANCH(config)#service password-en
+SW-BRANCH(config)#service password-encryption 
+SW-BRANCH(config)#username admin
+SW-BRANCH(config)#username admin privile
+SW-BRANCH(config)#username admin privilege 15 secret AdminSecure123!
+SW-BRANCH(config)#ip domain
+SW-BRANCH(config)#ip domain-n
+SW-BRANCH(config)#ip domain-name m techcorp.local
+SW-BRANCH(config)#crypto
+SW-BRANCH(config)#crypto key
+SW-BRANCH(config)#crypto key gene
+SW-BRANCH(config)#crypto key generate rsa modulus 2024  48
+The name for the keys will be: SW-BRANCH.techcorp.local
+
+% The key modulus size is 2048 bits
+
+% Rsa keys cannot be generated, as system clock is invalid
+SW-BRANCH(config)#crypto key generate rsa modulus 2048
+The name for the keys will be: SW-BRANCH.techcorp.local
+
+% The key modulus size is 2048 bits
+
+% Rsa keys cannot be generated, as system clock is invalid
+SW-BRANCH(config)#exit
+SW-BRANCH#
+Apr 13 11:02:50.631: %SYS-5-CONFIG_I: Configured from console by consolecloc      
+SW-BRANCH#
+SW-BRANCH#co  clock set 14:00:00 jan 11 2026
+SW-BRANCH#
+Jan 11 14:00:01.265: %SYS-6-CLOCKUPDATE: System clock has been updated from 11:03:06 UTC Wed Apr 13 1932 to 14:00:01 UTC Sun Jan 11 2026, configured from console by console.
+SW-BRANCH#
+SW-BRANCH#
+SW-BRANCH#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+SW-BRANCH(config)#crypto key generate rsa modulus 2049 8
+The name for the keys will be: SW-BRANCH.techcorp.local
+
+% The key modulus size is 2048 bits
+% Generating 2048 bit RSA keys, keys will be non-exportable...
+[OK] (elapsed time was 6 seconds)
+
+SW-BRANCH(config)#
+Jan 11 14:00:27.584: %SSH-5-ENABLED: SSH 1.99 has been enabled
+SW-BRANCH(config)#
+SW-BRANCH(config)#
+SW-BRANCH(config)#
+SW-BRANCH(config)#
+SW-BRANCH(config)#ip ssh er  version 2 
+SW-BRANCH(config)#ip ssh time
+SW-BRANCH(config)#ip ssh time-out 0 60
+SW-BRANCH(config)#ip ssh authe
+SW-BRANCH(config)#ip ssh authentication-retries 3
+SW-BRANCH(config)#
+SW-BRANCH(config)#
+SW-BRANCH(config)#
+SW-BRANCH(config)#line console 0 
+SW-BRANCH(config-line)#login local 
+SW-BRANCH(config-line)#loggin
+SW-BRANCH(config-line)#logging syn
+SW-BRANCH(config-line)#logging synchronous 
+SW-BRANCH(config-line)#exec-time
+SW-BRANCH(config-line)#exec-timeout 10 0
+SW-BRANCH(config-line)#exit
+SW-BRANCH(config)#line vty 0 15
+SW-BRANCH(config-line)#login local 
+SW-BRANCH(config-line)#loggin
+SW-BRANCH(config-line)#logging syn
+SW-BRANCH(config-line)#logging synchronous 
+SW-BRANCH(config-line)#exec-  time
+SW-BRANCH(config-line)#exec-timeout 10 0
+SW-BRANCH(config-line)#exit
+SW-BRANCH(config)#vlan 50
+SW-BRANCH(config-vlan)#name BRACNH     NH CH  : _LAN
+SW-BRANCH(config-vlan)#exit
+SW-BRANCH(config)#
+SW-BRANCH(config)#inter giga 0/1
+                             ^
+% Invalid input detected at '^' marker.
+
+SW-BRANCH(config)#des
+SW-BRANCH(config)#des   inter
+SW-BRANCH(config)#interface giga
+SW-BRANCH(config)#interface gigabitEthernet 0/1
+                                            ^
+% Invalid input detected at '^' marker.
+
+SW-BRANCH(config)#interface gigabitEthernet 0/1 0/1 
+                                           ^
+% Invalid input detected at '^' marker.
+
+SW-BRANCH(config)#interface gigabitEthernet0/1   ?
+GigabitEthernet  
+
+SW-BRANCH(config)#interface gigabitEthernet                           do sh run
+Building configuration...
+
+Current configuration : 1906 bytes
+!
+! Last configuration change at 11:02:50 UTC Wed Apr 13 1932
+!
+version 15.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname SW-BRANCH
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$Yzmm$q/55nWGo5Gck6Gm8G9Cmm1
+!
+username admin privilege 15 secret 5 $1$A3DD$7PuRkLKq1KPKVK82xeFUg.
+no aaa new-model
+switch 1 provision ws-c2960x-24ps-l
+!
+!
+ --More--         no ip domain-lookup
+ --More--         ip domain-name techcorp.local
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         spanning-tree mode pvst
+ --More--         spanning-tree extend system-id
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         vlan internal allocation policy ascending
+ --More--         !
+ --More--         !
+ --More--         ! 
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         !
+ --More--         interface FastEthernet0
+ --More--         !
+ --More--         interface GigabitEthernet1/0/1
+ --More--         !
+ --More--         interface GigabitEthernet1/0/2
+ --More--         !
+ --More--         interface GigabitEthernet1/0/3
+ --More--         !
+ --More--         interface GigabitEthernet1/0/4
+ --More--         !
+ --More--         interface GigabitEthernet1/0/5
+ --More--         !
+ --More--         interface GigabitEthernet1/0/6
+ --More--         !
+ --More--         interface GigabitEthernet1/0/7
+ --More--         !
+ --More--         interface GigabitEthernet1/0/8
+ --More--         !
+ --More--         
+SW-BRANCH(config)#inter giga
+SW-BRANCH(config)#inter gigabitEthernet 1/0! /1
+SW-BRANCH(config-if)#des
+SW-BRANCH(config-if)#description LINK a A RT  -BRANCH
+SW-BRANCH(config-if)#sw
+SW-BRANCH(config-if)#switchport mode acc
+SW-BRANCH(config-if)#switchport mode access 
+SW-BRANCH(config-if)#sw
+SW-BRANCH(config-if)#switchport acc
+SW-BRANCH(config-if)#switchport access vlan 50
+SW-BRANCH(config-if)#e no
+Jan 11 14:03:28.425: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to down
+SW-BRANCH(config-if)#no shu
+SW-BRANCH(config-if)#no shutdown 
+SW-BRANCH(config-if)#
+SW-BRANCH(config-if)#
+SW-BRANCH(config-if)#
+SW-BRANCH(config-if)#exit
+SW-BRANCH(config)#
+SW-BRANCH(config)#
+SW-BRANCH(config)#inter range giga
+SW-BRANCH(config)#inter range gigabitEthernet 1/0/2-24
+SW-BRANCH(config-if-range)#des
+SW-BRANCH(config-if-range)#description USUARIOS BRN ANCH
+SW-BRANCH(config-if-range)#sw
+SW-BRANCH(config-if-range)#switchport mode
+SW-BRANCH(config-if-range)#switchport mode acc
+SW-BRANCH(config-if-range)#switchport mode access 
+SW-BRANCH(config-if-range)#sw
+SW-BRANCH(config-if-range)#switchport ac
+SW-BRANCH(config-if-range)#switchport access vlan 50
+SW-BRANCH(config-if-range)#no shu
+SW-BRANCH(config-if-range)#no shutdown 
+SW-BRANCH(config-if-range)#
+SW-BRANCH(config-if-range)#
+SW-BRANCH(config-if-range)#
+SW-BRANCH(config-if-range)#exit
+SW-BRANCH(config)#
+SW-BRANCH(config)#
+SW-BRANCH(config)#interfa
+SW-BRANCH(config)#interface vlan 50
+SW-BRANCH(config-if)#ip add
+Jan 11 14:04:19.505: %LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan50, changed state to up
+SW-BRANCH(config-if)#ip add
+SW-BRANCH(config-if)#ip address 192.168.502 .2 255.255.255.0
+SW-BRANCH(config-if)#no shu
+SW-BRANCH(config-if)#no shutdown 
+SW-BRANCH(config-if)#
+SW-BRANCH(config-if)#
+SW-BRANCH(config-if)#
+SW-BRANCH(config-if)#exit
+SW-BRANCH(config)#
+SW-BRANCH(config)#
+SW-BRANCH(config)#ip defa
+SW-BRANCH(config)#ip default-gateway 192.168.50.1
+SW-BRANCH(config)#exit
+SW-BRANCH#
+SW-BRANCH#
+SW-BRANCH#
+SW-BRANCH#
+SW-BRANCH#wr
+Building configuration...
+[OK]
+Jan 11 14:04:49.354: %SYS-5-CONFIG_I: Configured from console by console
+SW-BRANCH#
+SW-BRANCH#
+SW-BRANCH#
+SW-BRANCH#sh ip int broief    ief
+Interface              IP-Address      OK? Method Status                Protocol
+Vlan1                  unassigned      YES unset  up                    down    
+Vlan50                 192.168.50.2    YES manual up                    up      
+FastEthernet0          unassigned      YES unset  down                  down    
+GigabitEthernet1/0/1   unassigned      YES unset  up                    up      
+GigabitEthernet1/0/2   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/3   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/4   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/5   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/6   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/7   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/8   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/9   unassigned      YES unset  down                  down    
+GigabitEthernet1/0/10  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/11  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/12  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/13  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/14  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/15  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/16  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/17  unassigned      YES unset  down                  down    
+GigabitEthernet1/0/18  unassigned      YES unset  down                  down    
+ --More--         GigabitEthernet1/0/19  unassigned      YES unset  down                  down    
+ --More--         GigabitEthernet1/0/20  unassigned      YES unset  down                  down    
+ --More--         GigabitEthernet1/0/21  unassigned      YES unset  down                  down    
+ --More--         GigabitEthernet1/0/22  unassigned      YES unset  down                  down    
+ --More--         GigabitEthernet1/0/23  unassigned      YES unset  down                  down    
+ --More--         GigabitEthernet1/0/24  unassigned      YES unset  down                  down    
+ --More--         GigabitEthernet1/0/25  unassigned      YES unset  down                  down    
+ --More--         GigabitEthernet1/0/26  unassigned      YES unset  down                  down    
+ --More--         GigabitEthernet1/0/27  unassigned      YES unset  down                  down    
+ --More--         
+SW-BRANCH#
+SW-BRANCH#sh vlan  s
+                 ^
+% Invalid input detected at '^' marker.
+
+SW-BRANCH#sh vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Gi1/0/25, Gi1/0/26, Gi1/0/27
+                                                Gi1/0/28
+50   BRANCH_LAN                       active    Gi1/0/1, Gi1/0/2, Gi1/0/3
+                                                Gi1/0/4, Gi1/0/5, Gi1/0/6
+                                                Gi1/0/7, Gi1/0/8, Gi1/0/9
+                                                Gi1/0/10, Gi1/0/11, Gi1/0/12
+                                                Gi1/0/13, Gi1/0/14, Gi1/0/15
+                                                Gi1/0/16, Gi1/0/17, Gi1/0/18
+                                                Gi1/0/19, Gi1/0/20, Gi1/0/21
+                                                Gi1/0/22, Gi1/0/23, Gi1/0/24
+1002 fddi-default                     act/unsup 
+1003 token-ring-default               act/unsup 
+1004 fddinet-default                  act/unsup 
+1005 trnet-default                    act/unsup 
+SW-BRANCH#
+SW-BRANCH#
+SW-BRANCH#
+SW-BRANCH#
+SW-BRANCH#
+SW-BRANCH#
+SW-BRANCH#
+SW-BRANCH#
